@@ -1,0 +1,30 @@
+.firstDiv {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.secondDiv {
+  width: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.329);
+  flex-direction: column;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input {
+  box-sizing: border-box;
+  padding: 0 20px;
+  width: 50%;
+  height: 8%;
+}
+
+.button {
+  width: 50%;
+  margin: 20px 0;
+  cursor: pointer;
+}
