@@ -11,19 +11,19 @@ const Signup = () => {
     /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
   const passwordRegEx = /^[A-Za-z0-9]{6,}$/;
 
-  const emailCheck = (email) => {
+  const emailCheck = (email: string): boolean => {
     return emailRegEx.test(email);
   };
 
-  const passwordCheck = (password) => {
+  const passwordCheck = (password: string): boolean => {
     return passwordRegEx.test(password);
   };
 
-  const inputEmail = (e) => {
+  const inputEmail = (e: React.FormEvent<HTMLInputElement>): void => {
     setEmail(e.target.value);
   };
 
-  const inputPassword = (e) => {
+  const inputPassword = (e: React.FormEvent<HTMLInputElement>): void => {
     setPassword(e.target.value);
   };
 
@@ -55,6 +55,7 @@ const Signup = () => {
   return (
     <div className={classes.firstDiv}>
       <div className={classes.secondDiv}>
+        <div className={classes.signup}>Signup</div>
         <input
           className={classes.input}
           placeholder="이메일을 입력해주세요"
@@ -70,7 +71,7 @@ const Signup = () => {
           onChange={inputPassword}
         ></input>
         <div>
-          <button onClick={signup} type="submit">
+          <button className={classes.button} onClick={signup} type="submit">
             회원가입 하기
           </button>
         </div>

@@ -14,6 +14,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+.signup {
+  position: absolute;
+  top: 40px;
+  font-size: 20px;
 }
 
 .input {
@@ -24,7 +30,5 @@
 }
 
 .button {
-  width: 50%;
-  margin: 20px 0;
   cursor: pointer;
 }
