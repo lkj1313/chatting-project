@@ -14,9 +14,9 @@ const provider = new GoogleAuthProvider();
 provider.addScope("email");
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,6 +30,8 @@ const LoginPage = () => {
       );
       const user = userCredential.user;
       alert("로그인 완료");
+      //로그인 성공후 /main페이지로 이동
+      navigate("/main");
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -78,6 +80,7 @@ const LoginPage = () => {
             type="email"
             placeholder="아이디"
           ></input>
+
           <input
             value={password}
             onChange={(e) => {
@@ -87,19 +90,19 @@ const LoginPage = () => {
             type="password"
             placeholder="비밀번호"
           ></input>
+
           <div className={classes.buttonDiv}>
-            <button
+            <button // 로그인버튼
               className={classes.button}
               type="submit"
               name="submitButton"
             >
               로그인
             </button>
-            <button
+
+            <button //회원가입 버튼
               className={classes.button}
-              onClick={() => {
-                navigate("/signupPage");
-              }}
+              onClick={() => navigate("/signupPage")}
             >
               회원가입
             </button>
