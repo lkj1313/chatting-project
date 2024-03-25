@@ -1,10 +1,10 @@
-import classes from "./MainPage.module.css";
+import classes from "./ChatPage.module.css";
 import Top from "./components/Top";
 import Bottom from "./components/Bottom";
 
 import ChatRoom from "./components/ChatRoom";
 
-const MainPage = () => {
+const ChatPage = () => {
   return (
     <div className={classes.firstDiv}>
       <Top />
@@ -14,4 +14,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default ChatPage;

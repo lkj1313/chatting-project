@@ -7,7 +7,7 @@ import { IdContext } from "../../../App";
 
 const Bottom = () => {
   const id = useContext(IdContext);
-  console.log(id);
+
   const [chat, setChat] = useState("");
 
   const sendMessage = async (e) => {

@@ -8,7 +8,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect, createContext } from "react";
 import LoginPage from "./pages/login/LoginPage";
 import SignupPage from "./pages/signup/SignupPage";
-import MainPage from "./pages/mainPage/MainPage";
+import ChatPage from "./pages/mainPage/ChatPage";
+import ProfilePage from "./pages/profile/ProfilePage";
 
 //id context
 export const IdContext = createContext(null);
@@ -50,11 +51,21 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/signupPage" element={<SignupPage />} />
+
         <Route
-          path="/main"
+          path="chatpage"
           element={
             <PrivateRoute>
-              <MainPage />
+              <ChatPage />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/profilePage"
+          element={
+            <PrivateRoute>
+              <ProfilePage />
             </PrivateRoute>
           }
         />
