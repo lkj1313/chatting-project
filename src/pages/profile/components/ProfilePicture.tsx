@@ -1,14 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import classes from "./ProfilePicture.module.css";
 import { useContext, useEffect, useState } from "react";
-import {
-  addDoc,
-  collection,
-  getDoc,
-  setDoc,
-  doc,
-  updateDoc,
-} from "firebase/firestore";
+import { getDoc, setDoc, doc, updateDoc } from "firebase/firestore";
 import firestore from "../../../main";
 import { IdContext } from "../../../App";
 import profile from "../../../assets/profile.jpg";

@@ -1,9 +1,9 @@
 .firstDiv {
-  position: fixed;
-  bottom: 0;
+  position: absolute;
+  bottom: 0px;
   width: 500px;
   box-sizing: border-box;
-  height: 10%;
+  height: 8%;
   display: flex;
   justify-content: center;
   align-items: center;

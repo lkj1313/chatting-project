@@ -8,7 +8,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect, createContext } from "react";
 import LoginPage from "./pages/login/LoginPage";
 import SignupPage from "./pages/signup/SignupPage";
-import ChatPage from "./pages/mainPage/ChatPage";
+import ChatPage from "./pages/chat/ChatPage";
 import ProfilePage from "./pages/profile/ProfilePage";
 
 //id context
