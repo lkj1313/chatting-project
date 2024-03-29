@@ -31,7 +31,7 @@ const LoginPage = () => {
       const user = userCredential.user;
       alert("로그인 완료");
       //로그인 성공후 /main페이지로 이동
-      navigate("/profilepage");
+      navigate("/chatpage");
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;

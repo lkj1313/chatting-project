@@ -2,16 +2,16 @@ import { useNavigate } from "react-router-dom";
 import classes from "./ProfilePicture.module.css";
 import { useContext, useEffect, useState } from "react";
 import { getDoc, setDoc, doc, updateDoc } from "firebase/firestore";
-import firestore from "../../../main";
-import { IdContext } from "../../../App";
-import profile from "../../../assets/profile.jpg";
-import pencil from "../../../assets/pencil.jpg";
+import firestore from "../../../../main";
+import { IdContext } from "../../../../App";
+import profile from "../../../../assets/profile.jpg";
+import pencil from "../../../../assets/pencil.jpg";
 
-const ProfilePicture = () => {
+const ProfilePicture = ({ closeModal, index }) => {
+  console.log(closeModal);
   const id = useContext(IdContext);
   const [imageUrl, setImageUrl] = useState(null);
   const [nickname, setNickname] = useState("마루");
-  const navigate = useNavigate();
 
   const changePicture = async (imageUrl) => {
     try {
@@ -100,37 +100,39 @@ const ProfilePicture = () => {
 
   return (
     <div className={classes.firstDiv}>
-      <div className={classes.moveBox}>
-        <button
-          className={classes.moveButton}
-          onClick={() => {
-            navigate("/chatpage");
-          }}
-        >
-          채팅창으로 이동
-        </button>
+      <div className={classes.userInfo}>
+        <span>회원정보</span>
       </div>
-      <button //프사변경 버튼
-        className={classes.profilePictureChangeButton}
-        onClick={handleImageClick}
+      <button
+        className={classes.closeModalButton}
+        onClick={() => {
+          closeModal(index);
+        }}
       >
-        {imageUrl && (
-          <img
-            className={classes.profilePicture}
-            src={imageUrl}
-            alt="ProfilePicture"
-          />
-        )}
+        <span style={{ fontSize: "30px" }}>&times;</span>
       </button>
-
-      <div className={classes.nicknameBox}>
-        <span className={classes.nickname}>{nickname}</span>
-        <button
-          className={classes.edditNicknameButton}
-          onClick={handleNicknameEdit}
+      <div>
+        <button //프사변경 버튼
+          className={classes.profilePictureChangeButton}
+          onClick={handleImageClick}
         >
-          <img src={pencil} alt="Edit" className={classes.nicknameIcon} />
+          {imageUrl && (
+            <img
+              className={classes.profilePicture}
+              src={imageUrl}
+              alt="ProfilePicture"
+            />
+          )}
         </button>
+        <div className={classes.nicknameBox}>
+          <span className={classes.nickname}>{nickname}</span>
+          <button
+            className={classes.edditNicknameButton}
+            onClick={handleNicknameEdit}
+          >
+            <img src={pencil} alt="Edit" className={classes.nicknameIcon} />
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,11 +1,12 @@
 import classes from "./ProfilePage.module.css";
-import ProfilePicture from "./components/ProfilePicture";
+import ProfilePicture from "./ProfilePicture";
 
-const ProfilePage = () => {
+const ProfilePage = ({ closeModal, index }) => {
+  console.log(closeModal);
   return (
     <div className={classes.firstDiv}>
       <div className={classes.profileDiv}>
-        <ProfilePicture />
+        <ProfilePicture closeModal={closeModal} index={index} />
       </div>
     </div>
   );
