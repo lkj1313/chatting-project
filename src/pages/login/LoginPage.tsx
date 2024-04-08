@@ -8,6 +8,9 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import googleLogo from "../../assets/google.png";
+import logo from "../../assets/sendButton.png";
+import Button from "@mui/material/Button";
+import Loding from "../../components/Loding";
 
 const provider = new GoogleAuthProvider();
 
@@ -17,10 +20,12 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const auth = getAuth();
+    setLoading(true);
 
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -29,9 +34,10 @@ const LoginPage = () => {
         password
       );
       const user = userCredential.user;
-      alert("로그인 완료");
-      //로그인 성공후 /main페이지로 이동
-      navigate("/chatpage");
+      setTimeout(() => {
+        setLoading(false); // 로딩 상태 비활성화
+        navigate("/mainPage");
+      }, 2000);
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -56,7 +62,7 @@ const LoginPage = () => {
         const user = result.user;
         // IdP data available using getAdditionalUserInfo(result)
         // ...
-        alert("로그인 완료");
+        navigate("/mainpage");
       })
       .catch((error) => {
         // Handle Errors here.
@@ -68,58 +74,72 @@ const LoginPage = () => {
   };
   return (
     <div className={classes.firstDiv}>
-      <div className={classes.secondDiv}>
-        <form className={classes.loginForm} onSubmit={handleSubmit}>
-          <div className={classes.Login}>Login</div>
-          <input
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            className={classes.input}
-            type="email"
-            placeholder="아이디"
-          ></input>
-
-          <input
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            className={classes.input}
-            type="password"
-            placeholder="비밀번호"
-          ></input>
-
-          <div className={classes.buttonDiv}>
-            <button // 로그인버튼
-              className={classes.button}
-              type="submit"
-              name="submitButton"
-            >
-              로그인
-            </button>
-
-            <button //회원가입 버튼
-              className={classes.button}
-              onClick={() => navigate("/signupPage")}
-            >
-              회원가입
-            </button>
-          </div>
-
-          <button onClick={googleLogin} className={classes.googleLoginButton}>
-            <div className={classes.buttonContent}>
-              <img
-                className={classes.googleLogo}
-                src={googleLogo}
-                alt="googleLogo"
+      {loading ? ( // 로딩 중일 때
+        <Loding />
+      ) : (
+        // 로딩 중이 아닐 때
+        <div className={classes.secondDiv}>
+          <form className={classes.loginForm} onSubmit={handleSubmit}>
+            {/* 로그인 폼 */}
+            <img
+              className={classes.logo}
+              src={logo}
+              alt="Logo"
+              onClick={() => window.location.reload()}
+            />
+            <div className={classes.inputBox}>
+              {/* 이메일, 비밀번호 입력란 */}
+              <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={classes.input}
+                type="email"
+                placeholder="이메일"
               />
-              <span>Google 계정으로 로그인</span>
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={classes.input}
+                type="password"
+                placeholder="비밀번호"
+              />
+              {/* 로그인, 회원가입 버튼 */}
+              <div className={classes.buttonDiv}>
+                <Button
+                  variant="contained"
+                  className={classes.button}
+                  style={{ margin: "10px 0px" }}
+                  type="submit"
+                  name="submitButton"
+                >
+                  로그인
+                </Button>
+                <Button
+                  variant="contained"
+                  className={classes.button}
+                  onClick={() => navigate("/signupPage")}
+                >
+                  회원가입
+                </Button>
+              </div>
+              {/* 구글 로그인 버튼 */}
+              <button
+                onClick={googleLogin}
+                className={classes.googleLoginButton}
+              >
+                <div className={classes.buttonContent}>
+                  <img
+                    className={classes.googleLogo}
+                    src={googleLogo}
+                    alt="Google Logo"
+                  />
+                  <span>Google 계정으로 로그인</span>
+                </div>
+              </button>
             </div>
-          </button>
-        </form>
-      </div>
+          </form>
+        </div>
+      )}
     </div>
   );
 };

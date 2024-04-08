@@ -8,7 +8,6 @@ import profile from "../../../../assets/profile.jpg";
 import pencil from "../../../../assets/pencil.jpg";
 
 const ProfilePicture = ({ closeModal, index }) => {
-  console.log(closeModal);
   const id = useContext(IdContext);
   const [imageUrl, setImageUrl] = useState(null);
   const [nickname, setNickname] = useState("마루");

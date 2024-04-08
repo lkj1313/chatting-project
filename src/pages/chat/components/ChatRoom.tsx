@@ -45,33 +45,30 @@ const ChatRoom = () => {
       collection(firestore, "messages"),
       async (snapshot) => {
         try {
-          const updatedMessages = [];
-          for (const docSnap of snapshot.docs) {
-            // 메세지 doc 가져오기
-
-            const messageData = docSnap.data();
-            // 사용자 정보 가져오기
-            const userDoc = await getDoc(
-              doc(firestore, "users", messageData.userId)
+          if (!snapshot.empty) {
+            const updatedMessages = [];
+            for (const element of snapshot.docs) {
+              const messageData = element.data();
+              const userDoc = await getDoc(
+                doc(firestore, "messages", messageData.userId)
+              );
+              const userData = userDoc.data();
+              const userProfilePic = DEFAULT_PROFILE_PIC;
+              const userNickname = DEFAULT_NICKNAME;
+              const messageWithUserInfo = {
+                message: messageData.message,
+                id: element.id,
+                timestamp: messageData.timestamp,
+                userProfilePic: userProfilePic,
+                userNickname: userNickname,
+              };
+              updatedMessages.push(messageWithUserInfo);
+            }
+            const sortedMessages = updatedMessages.sort(
+              (a, b) => a.timestamp - b.timestamp
             );
-            const userData = userDoc.data();
-            const userProfilePic =
-              userData.profileImageUrl || DEFAULT_PROFILE_PIC; // 사용자 프로필 사진 또는 기본 프로필 사진 설정
-
-            const userNickname = userData.nickname || DEFAULT_NICKNAME; // 사용자 닉네임 또는 기본 닉네임 설정
-            const messageWithUserInfo = {
-              id: docSnap.id,
-              message: messageData.message,
-              timestamp: messageData.timestamp,
-              userProfilePic: userProfilePic,
-              userNickname: userNickname,
-            };
-            updatedMessages.push(messageWithUserInfo);
+            setChatList(sortedMessages);
           }
-          const sortedMessages = updatedMessages.sort(
-            (a, b) => a.timestamp - b.timestamp
-          );
-          setChatList(sortedMessages);
         } catch (error) {
           console.error("Error fetching chat list: ", error);
         }

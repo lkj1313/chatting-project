@@ -19,7 +19,7 @@ const Bottom = () => {
           userId: id,
           timestamp: new Date(),
         });
-        console.log("Document written with ID: ", docRef.id);
+
         setChat(""); // 메시지 입력 창 초기화
       } catch (error) {
         console.error("Error adding document: ", error);

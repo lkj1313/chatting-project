@@ -9,6 +9,7 @@ import { useState, useEffect, createContext } from "react";
 import LoginPage from "./pages/login/LoginPage";
 import SignupPage from "./pages/signup/SignupPage";
 import ChatPage from "./pages/chat/ChatPage";
+import MainPage from "./pages/main/MainPage";
 
 //id context
 export const IdContext = createContext(null);
@@ -50,7 +51,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/signupPage" element={<SignupPage />} />
-
+        <Route path="/mainpage" element={<MainPage />} />
         <Route
           path="chatpage"
           element={

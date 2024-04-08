@@ -1,0 +1,93 @@
+/* ProfileModal.module.css */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 회색 오버레이 색상 및 투명도 조절 */
+  z-index: 999; /* 모달보다 낮은 z-index 값으로 설정하여 모달 위에 표시됨 */
+}
+
+.modal {
+  position: fixed;
+  height: 350px;
+  width: 350px;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.978);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* 모달이 가장 위에 표시되도록 설정 */
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #333;
+}
+.profileBox {
+  width: 100%;
+  margin: auto;
+  display: flex; /* 부모 요소를 플렉스 박스로 설정하여 자식 요소를 수직 가운데 정렬 */
+  flex-direction: column;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+}
+.profilePicture {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: block;
+}
+.nicknameBox {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.nickname {
+  margin-top: 20px;
+  position: relative;
+  text-align: center;
+}
+.pencilContainer {
+  width: 100%;
+  position: relative;
+  text-align: center;
+}
+.pencilContainer::before {
+  content: ""; /* 내용이 없는 요소를 생성합니다. */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 350px;
+  height: 1px; /* 가로선의 높이를 1px로 설정합니다. */
+  background-color: red;
+}
+.nicknameChangeButton {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  position: relative;
+  top: 10px;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+.pencil {
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+}
