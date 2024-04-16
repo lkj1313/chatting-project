@@ -1,0 +1,85 @@
+.menuBox {
+  padding: 0;
+  height: 100%;
+  position: relative;
+  margin: 0;
+
+  box-sizing: border-box;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.156
+  ); /* 회색 오버레이 색상 및 투명도 조절 */
+  z-index: 999; /* 모달보다 낮은 z-index 값으로 설정하여 모달 위에 표시됨 */
+}
+.menuButton {
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 25px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  top: 10px;
+}
+.menuButtonHidden {
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 25px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  top: 10px;
+  display: none;
+}
+.menuContainer {
+  text-align: center;
+  z-index: 2000;
+  padding-top: 100px;
+  margin: 0;
+  box-sizing: border-box;
+  position: absolute;
+  top: 1px;
+  right: -300px;
+  width: 0px;
+  height: calc(100% + 8.3px); /* 뷰포트 높이 만큼 */
+  background-color: rgba(0, 255, 166, 0.144);
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  /* 요소를 투명하게 만듭니다. */
+  transition: right 1s ease, opacity 1s ease; /* opacity에도 transition 적용 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  opacity: 1;
+}
+
+.menuContainer.open {
+  width: 300px;
+  opacity: 1; /* 요소를 다시 보이게 합니다. */
+  position: absolute;
+  right: -9px;
+}
+
+.menuContainer button {
+  font-weight: 1000;
+  font-size: 20;
+  height: 100px;
+  width: 200px;
+  border-radius: 50px;
+  cursor: pointer;
+  color: rgba(0, 0, 255, 0.668);
+  border: none;
+  margin-bottom: 50px;
+}

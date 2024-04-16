@@ -3,10 +3,10 @@ import sendButton from "../../../../src/assets/sendButton.png";
 import { useState, useContext } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import firestore from "./../../../main";
-import { IdContext } from "../../../App";
+import { Context } from "../../../App";
 
 const Bottom = () => {
-  const id = useContext(IdContext);
+  const id = useContext(Context.id);
 
   const [chat, setChat] = useState("");
 

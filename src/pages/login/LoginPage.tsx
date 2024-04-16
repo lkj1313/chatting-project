@@ -10,7 +10,7 @@ import {
 import googleLogo from "../../assets/google.png";
 import logo from "../../assets/sendButton.png";
 import Button from "@mui/material/Button";
-import Loding from "../../components/Loding";
+import Loding from "../../components/Loading";
 
 const provider = new GoogleAuthProvider();
 
@@ -47,6 +47,7 @@ const LoginPage = () => {
       } else {
         console.error("로그인 실패:", errorCode, errorMessage);
       }
+      setLoading(false);
     }
   };
 

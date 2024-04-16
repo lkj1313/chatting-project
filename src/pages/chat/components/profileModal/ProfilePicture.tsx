@@ -3,12 +3,12 @@ import classes from "./ProfilePicture.module.css";
 import { useContext, useEffect, useState } from "react";
 import { getDoc, setDoc, doc, updateDoc } from "firebase/firestore";
 import firestore from "../../../../main";
-import { IdContext } from "../../../../App";
+import { Context } from "../../../../App";
 import profile from "../../../../assets/profile.jpg";
 import pencil from "../../../../assets/pencil.jpg";
 
 const ProfilePicture = ({ closeModal, index }) => {
-  const id = useContext(IdContext);
+  const id = useContext(Context.id);
   const [imageUrl, setImageUrl] = useState(null);
   const [nickname, setNickname] = useState("마루");
 

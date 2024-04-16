@@ -5,7 +5,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
+
 .topComponentsFirstDiv span {
   font-size: 20px;
   font-weight: bold;
@@ -18,4 +21,26 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+}
+
+.profilePicture {
+  position: relative;
+  left: -1px;
+  bottom: 1px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.menu {
+  height: calc(100% - 10px);
+  position: absolute;
+  top: 0px;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  right: 10px;
 }
