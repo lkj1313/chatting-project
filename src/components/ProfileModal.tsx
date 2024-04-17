@@ -125,7 +125,6 @@ const ProfileModal = ({ children, closeModal, contextObject }) => {
 
   return (
     <>
-      <div className={classes.overlay} onClick={closeModal}></div>
       <div className={classes.modal}>
         <button className={classes.closeButton} onClick={closeModal}>
           X

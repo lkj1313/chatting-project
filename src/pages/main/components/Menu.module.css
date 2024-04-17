@@ -46,7 +46,7 @@
 .menuContainer {
   text-align: center;
   z-index: 2000;
-  padding-top: 100px;
+  padding-top: 0px;
   margin: 0;
   box-sizing: border-box;
   position: absolute;
@@ -57,29 +57,59 @@
   background-color: rgba(0, 255, 166, 0.144);
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
   /* 요소를 투명하게 만듭니다. */
-  transition: right 1s ease, opacity 1s ease; /* opacity에도 transition 적용 */
+  transition: width 1s ease, right 1s ease, opacity 1s ease; /* opacity에도 transition 적용 */
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  opacity: 1;
+  opacity: 0;
+
+  box-sizing: border-box;
 }
 
 .menuContainer.open {
+  padding: 10px;
   width: 300px;
+  margin: 0;
   opacity: 1; /* 요소를 다시 보이게 합니다. */
   position: absolute;
   right: -9px;
 }
-
-.menuContainer button {
-  font-weight: 1000;
-  font-size: 20;
-  height: 100px;
-  width: 200px;
-  border-radius: 50px;
+.profileModalButtonBox {
+  width: calc(100%);
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
+  position: relative;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+.profileModalButton {
+  width: 70px;
+  height: 70px;
+  padding: 0;
+  border-radius: 50%;
   cursor: pointer;
-  color: rgba(0, 0, 255, 0.668);
   border: none;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
+}
+.profileModalButton img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: none;
+}
+.profileModalButtonBox span {
+  width: 70px;
+  margin-top: 0px;
+  padding: 0;
+  font-weight: 900;
+  user-select: none; /* 텍스트 드래그 금지 */
+}
+
+.logOutButton {
+  width: 100%;
+  margin-top: 20px;
+  cursor: pointer;
 }

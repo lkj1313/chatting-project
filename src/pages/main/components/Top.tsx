@@ -7,10 +7,9 @@ import Menu from "./Menu";
 
 const Top = () => {
   const contextObject = useContext(Context);
-
+  const [hidden, setHidden] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
     if (contextObject.profilePicture !== null) {
@@ -26,14 +25,20 @@ const Top = () => {
     setShowProfileModal(false);
   };
   return (
-    <div className={classes.topComponentsFirstDiv}>
+    <div
+      className={
+        hidden
+          ? `${classes.topComponentsFirstDiv2}`
+          : `${classes.topComponentsFirstDiv}`
+      }
+    >
       <span style={{ visibility: hidden ? "hidden" : "visible" }}>채팅</span>
 
       <div className={classes.menu}>
         <Menu setHidden={setHidden} />
       </div>
       <div>
-        <button className={classes.profileButton} onClick={openProfileModal}>
+        {/* <button className={classes.profileButton} onClick={openProfileModal}>
           {loading ? (
             // 로딩 중인 경우 기본 이미지 또는 로딩 표시
             <img
@@ -51,14 +56,7 @@ const Top = () => {
               />
             </div>
           )}
-        </button>
-
-        {showProfileModal && (
-          <ProfileModal
-            contextObject={contextObject}
-            closeModal={closeProfileModal}
-          />
-        )}
+        </button> */}
       </div>
     </div>
   );
