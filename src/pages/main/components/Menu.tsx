@@ -11,7 +11,9 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { Context } from "../../../App";
-import logOutImg from "../../../assets/logOut.png";
+
+import Modal from "../../../components/Modal";
+import ChatRoomCreatorModal from "./ChatRoomCreatorModal";
 
 const Menu = ({ setHidden }) => {
   const [isOpen, setIsOpen] = useState(false); // 메뉴바
@@ -20,6 +22,7 @@ const Menu = ({ setHidden }) => {
   const [nickname, setNickname] = useState("");
   const [profilePicture, setProfilePicture] = useState("");
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const [isChatRoomCreatorModal, setIsChatRoomCreatorModal] = useState(false);
   const context = useContext(Context);
   console.log(context);
 
@@ -27,7 +30,12 @@ const Menu = ({ setHidden }) => {
   const profileModalOpener = () => {
     setModalOpen(!modalOpen);
   };
-
+  const chatRoomCreatorModalOpener = () => {
+    setIsChatRoomCreatorModal(true);
+  };
+  const chatRoomCreatorModalCloser = () => {
+    setIsChatRoomCreatorModal(false);
+  };
   const logout = async () => {
     const isLogOut = window.confirm("정말 로그아웃 하시겠습니까?");
     if (!isLogOut) return;
@@ -107,8 +115,19 @@ const Menu = ({ setHidden }) => {
               />
             ) : null}
           </div>
-
-          <button>대화방 만들기</button>
+          <div className={classes.OtherButtonBox}>
+            <button
+              className={classes.chatRoomCreatorButton}
+              onClick={chatRoomCreatorModalOpener}
+            >
+              대화방 만들기
+            </button>
+          </div>
+          {isChatRoomCreatorModal ? (
+            <Modal closeModal={chatRoomCreatorModalCloser} title="채널 만들기">
+              <ChatRoomCreatorModal closeModal={chatRoomCreatorModalCloser} />
+            </Modal>
+          ) : null}
         </div>
       </>
     </div>

@@ -1,0 +1,63 @@
+/* .modalContainer {
+  position: fixed;
+  height: 350px;
+  width: 350px;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.978);
+  padding: 0;
+  border-radius: 10%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 3000;
+} */
+
+.modalContainer {
+  position: fixed;
+  height: 350px;
+  width: 350px;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.978);
+  padding: 0;
+  border-radius: 10%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 3000;
+  opacity: 0; /* 초기 투명도를 0으로 설정합니다. */
+  animation: fadeIn 1s ease forwards; /* fadeIn 애니메이션을 적용하여 투명도를 서서히 0에서 1로 변경합니다. */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* 시작 시점의 투명도를 0으로 설정합니다. */
+  }
+  to {
+    opacity: 1; /* 종료 시점의 투명도를 1로 설정합니다. */
+  }
+}
+
+.closeButton {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #333;
+  padding: 0;
+  z-index: 3001;
+}
+.tCBox {
+  width: 100%;
+}
+.titleBox {
+  user-select: none;
+  border-bottom: 1px solid black;
+  box-sizing: border-box;
+  padding: 10px;
+  font-weight: 700;
+}
