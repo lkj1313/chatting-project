@@ -31,6 +31,7 @@
   border-radius: 50%;
   width: 50px;
   height: 50px;
+  cursor: pointer;
 }
 
 .chatRoomNameInput {
@@ -54,23 +55,30 @@
   position: absolute;
   background-color: transparent;
   cursor: pointer;
-  top: 17px;
+  top: 10px;
   left: 230px;
   padding: 0;
   box-sizing: border-box;
+
+  height: 35px;
+  width: 35px;
+  margin-left: 10px;
+  font-size: 25px;
   display: flex;
   align-items: center;
-  border: none;
-  margin-left: 10px;
-}
+  justify-content: center;
 
-.checkButton span {
-  padding: 0;
-  height: 20px;
-  font-size: 20px;
-  margin: 0;
-  box-sizing: border-box;
-  vertical-align: middle;
+  border: none;
+  transition: background-color 1s ease;
+}
+.checkButton:hover {
+  background-color: #bcbcc2;
+  /* box-shadow: 0 0 0 1px black; */
+}
+.checkButton img {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
 }
 
 .guideInputBox {

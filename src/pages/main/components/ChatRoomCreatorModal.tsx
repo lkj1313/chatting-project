@@ -1,19 +1,25 @@
 import { useState } from "react";
 import classes from "./ChatRoomCreatorModal.module.css";
 import cameraImg from "../../../assets/camera.png";
+import checkImg from "../../../assets/checkImg.png";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
+import defaultProfileImg from "../../../assets/profile.jpg";
+import defaultBackground from "../../../assets/defaultBackground.jpg";
 
 const ChatRoomCreatorModal = ({ closeModal }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [chatRoomName, setChatRoomName] = useState("");
+  const [chatRoomDescription, setChatRoomdDescription] = useState("");
 
   const handleImageChange = (e) => {
     if (e.target.files.length > 0) {
       setSelectedImage(e.target.files[0]);
     }
   };
-
+  const handleDescriptionChange = (e) => {
+    setChatRoomdDescription(e.target.value);
+  };
   /////// 체크눌렀을시
   const handleChatRoomCreation = async () => {
     if (!chatRoomName) {
@@ -29,6 +35,14 @@ const ChatRoomCreatorModal = ({ closeModal }) => {
         // 이미지 업로드
         const imageRef = ref(storage, `chatroom_images/${selectedImage.name}`);
         await uploadBytes(imageRef, selectedImage);
+      } else {
+        // 이미지가 없는 경우 기본 프로필 이미지 업로드
+        const imageRef = ref(storage, "chatroom_images/defaultBackground.jpg");
+        const response = await fetch(defaultBackground); // 이미지 경로를 사용하여 이미지를 가져옴
+
+        const blob = await response.blob();
+        // 이미지를 Blob 객체로 변환
+        await uploadBytes(imageRef, blob); // Blob 객체를 사용하여 이미지 업로드
       }
 
       // 대화방 생성
@@ -37,7 +51,9 @@ const ChatRoomCreatorModal = ({ closeModal }) => {
         name: chatRoomName,
         imageUrl: selectedImage
           ? `chatroom_images/${selectedImage.name}`
-          : null,
+          : `chatroom_images/defaultBackground.jpg`,
+        description: chatRoomDescription,
+        time: new Date().toISOString(),
       };
       await addDoc(roomsRef, roomData);
 
@@ -69,7 +85,7 @@ const ChatRoomCreatorModal = ({ closeModal }) => {
               <img
                 className={classes.cameraImg}
                 src={cameraImg}
-                alt="camera img"
+                alt="cameraImg"
               ></img>
             )}
           </div>
@@ -86,10 +102,14 @@ const ChatRoomCreatorModal = ({ closeModal }) => {
             className={classes.checkButton}
             onClick={handleChatRoomCreation}
           >
-            <span>✅</span>
+            <img src={checkImg} alt="checkImg"></img>
           </button>
           <div className={classes.guideInputBox}>
-            <input className={classes.guideInput} placeholder="안내"></input>
+            <input
+              className={classes.guideInput}
+              placeholder="안내"
+              onChange={handleDescriptionChange}
+            ></input>
             <span>대화방에 관한 설명을 써주세요</span>
           </div>
         </div>

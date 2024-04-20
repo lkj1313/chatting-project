@@ -24,7 +24,6 @@ const Menu = ({ setHidden }) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [isChatRoomCreatorModal, setIsChatRoomCreatorModal] = useState(false);
   const context = useContext(Context);
-  console.log(context);
 
   const navigate = useNavigate();
   const profileModalOpener = () => {
