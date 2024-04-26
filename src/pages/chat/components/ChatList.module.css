@@ -1,0 +1,99 @@
+.chatListContainer {
+  /* 스크롤이 표시될 최대 높이를 지정합니다. */
+  overflow-y: auto;
+  height: 84%; /* 수직 스크롤이 필요할 때만 스크롤을 표시합니다. */
+  width: 100%;
+  margin-right: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatContainerMy {
+  position: relative;
+  display: flex;
+  max-width: 70%;
+  justify-content: flex-end;
+  margin-top: 30px;
+  margin-right: 80px;
+}
+
+.chatContainerOther {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.profilePictureNicknameBoxMy {
+  display: none;
+}
+.profilePictureNicknameBoxOther {
+  display: flex;
+}
+.chatProfilePicture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid black;
+  /* position: absolute; */
+  cursor: pointer;
+}
+.chatNickname {
+  position: absolute;
+  left: 50px;
+  user-select: none;
+}
+.chatDivOther {
+  position: relative;
+  height: auto;
+  max-width: 70%;
+  left: 43px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatDivOther:before {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: -15px;
+  border-radius: 10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent #f0f0f0 transparent transparent; /* 왼쪽 선만 존재 */
+}
+
+.chatDivMy {
+  position: relative;
+  height: auto;
+  max-width: 70%;
+  left: 110px;
+  color: black;
+  background-color: #ffff00;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow-wrap: break-word;
+}
+
+.chatDivMy:before {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  right: -14px;
+  border-radius: 10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent transparent #ffff00; /* 왼쪽 선만 존재 */
+}
+
+.chatTime {
+  margin-top: 12px;
+  font-size: 13px;
+  user-select: none;
+  align-self: flex-end;
+}

@@ -4,7 +4,7 @@ import cameraImg from "../../../assets/camera.png";
 import checkImg from "../../../assets/checkImg.png";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
-import defaultProfileImg from "../../../assets/profile.jpg";
+
 import defaultBackground from "../../../assets/defaultBackground.jpg";
 
 const ChatRoomCreatorModal = ({ closeModal }) => {

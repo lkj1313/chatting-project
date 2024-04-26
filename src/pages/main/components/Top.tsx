@@ -32,7 +32,9 @@ const Top = () => {
           : `${classes.topComponentsFirstDiv}`
       }
     >
-      <span style={{ visibility: hidden ? "hidden" : "visible" }}>채팅</span>
+      <span style={{ visibility: hidden ? "hidden" : "visible" }}>
+        채팅방 목록
+      </span>
 
       <div className={classes.menu}>
         <Menu setHidden={setHidden} />

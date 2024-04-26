@@ -29,6 +29,7 @@ const ProfileModal = ({ children, closeModal, contextObject }) => {
             const userData = userDocSnapshot.data();
             setNickname(userData.nickname);
             setProfilePicture(userData.profilePicture);
+            console.log(profilePicture);
           }
         } catch (error) {
           console.error("Error fetching user data:", error);

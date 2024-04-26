@@ -1,6 +1,4 @@
-/* ChatRoom.module.css */
-
-.firstDiv {
+ChatRoom.module.css .firstDiv {
   height: 84%;
   overflow-y: scroll;
 }

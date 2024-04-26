@@ -7,49 +7,56 @@ import {
   query,
 } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
 import classes from "./ChatRoomList.module.css";
 
 const ChatRoomList = () => {
+  console.log("chatroomlist");
   const [chatRooms, setChatRooms] = useState([]);
+  const navigate = useNavigate();
 
-  const fetchChatRooms = async () => {
-    try {
-      const db = getFirestore();
-      const roomsCol = collection(db, "rooms");
-      const querySnapshot = await getDocs(
-        query(collection(db, "rooms"), orderBy("time", "desc"))
-      );
-
-      const fetchedChatRooms = [];
-      querySnapshot.forEach((doc) => {
-        fetchedChatRooms.push({ id: doc.id, ...doc.data() });
-      });
-
-      const storage = getStorage();
-      const updatedChatRooms = await Promise.all(
-        fetchedChatRooms.map(async (room) => {
-          const imageRef = ref(storage, room.imageUrl);
-          const url = await getDownloadURL(imageRef);
-          return { ...room, imageUrl: url };
-        })
-      );
-
-      if (JSON.stringify(updatedChatRooms) !== JSON.stringify(chatRooms)) {
-        setChatRooms(updatedChatRooms);
-      }
-    } catch (error) {
-      console.error("Error fetching chat rooms: ", error);
+  const enterChatRoom = (roomId, roomName) => {
+    const isOkay = window.confirm(`${roomName} 채팅방에 들어가시겠습니까?`);
+    if (isOkay) {
+      navigate(`/mainpage/${roomId}`);
     }
   };
 
   useEffect(() => {
+    const fetchChatRooms = async () => {
+      try {
+        const db = getFirestore();
+        const roomsCol = collection(db, "rooms");
+        const q = query(roomsCol, orderBy("time", "desc"));
+        const querySnapshot = await getDocs(q);
+
+        const fetchedChatRooms = [];
+        const storage = getStorage();
+
+        for (const doc of querySnapshot.docs) {
+          const room = doc.data();
+          const imageRef = ref(storage, room.imageUrl);
+          const url = await getDownloadURL(imageRef);
+          fetchedChatRooms.push({ id: doc.id, ...room, imageUrl: url });
+        }
+
+        setChatRooms(fetchedChatRooms);
+      } catch (error) {
+        console.error("Error fetching chat rooms:", error);
+      }
+    };
+
     fetchChatRooms();
-  }, [chatRooms]);
+  }, []);
 
   return (
     <div className={classes.chatRoomsBox}>
       {chatRooms.map((room) => (
-        <div className={classes.chatRoomBox} key={room.id}>
+        <div
+          key={room.id}
+          className={classes.chatRoomBox}
+          onClick={() => enterChatRoom(room.id, room.name)}
+        >
           <div className={classes.imgBox}>
             <img
               className={classes.chatRoomImg}

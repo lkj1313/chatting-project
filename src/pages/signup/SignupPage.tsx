@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import sendButton from "../../assets/sendButton.png";
 import classes from "./SignupPage.module.css";
@@ -52,6 +52,7 @@ const Signup = () => {
           navigate("/");
         }, 2000);
         // Firestore에 사용자 정보 저장
+        const firestore = getFirestore();
         if (firestore) {
           await setDoc(doc(firestore, "users", user.uid), {
             email: email,
@@ -69,7 +70,7 @@ const Signup = () => {
         if (error.code === "auth/email-already-in-use") {
           alert("이미 사용 중인 이메일 주소입니다.");
         } else {
-          alert("가입 중 오류가 발생했습니다:", error.message);
+          alert("가입 중 오류가 발생했습니다: " + error.message); // 오류 메시지 출력 수정
         }
       }
     } else {

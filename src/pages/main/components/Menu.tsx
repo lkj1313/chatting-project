@@ -3,13 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import ProfileModal from "../../../components/ProfileModal";
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  updateDoc,
-  onSnapshot,
-} from "firebase/firestore";
+import { getFirestore, doc, onSnapshot } from "firebase/firestore";
 import { Context } from "../../../App";
 
 import Modal from "../../../components/Modal";
@@ -105,7 +99,6 @@ const Menu = ({ setHidden }) => {
               로그아웃
             </button>
           </div>
-
           <div>
             {modalOpen ? (
               <ProfileModal

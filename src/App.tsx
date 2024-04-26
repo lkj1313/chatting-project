@@ -7,14 +7,15 @@ import {
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect, createContext } from "react";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
-import firestore from "./main";
 import LoginPage from "./pages/login/LoginPage";
 import SignupPage from "./pages/signup/SignupPage";
 import ChatPage from "./pages/chat/ChatPage";
 import MainPage from "./pages/main/MainPage";
 import profile from "./assets/profile.jpg";
 // 파이어스토어에서 사용자의 프로필 사진을 가져오는 함수
+
 const getProfilePicture = async (userId) => {
+  const firestore = getFirestore();
   try {
     const userDoc = doc(firestore, "users", userId); // users 컬렉션에서 해당 사용자 문서 가져오기
     const userSnapshot = await getDoc(userDoc); // 사용자 문서 가져오기
@@ -66,7 +67,7 @@ const PrivateRoute = ({ children }) => {
     return () => {
       unsubscribe();
     };
-  }, [navigate]); // navigate를 useEffect 의존성 배열에 추가
+  }, []); // navigate를 useEffect 의존성 배열에 추가
 
   return (
     <Context.Provider value={{ id, profilePicture, setProfilePicture }}>
@@ -90,7 +91,7 @@ function App() {
           }
         />
         <Route
-          path="chatpage"
+          path="/mainpage/:roomId"
           element={
             <PrivateRoute>
               <ChatPage />

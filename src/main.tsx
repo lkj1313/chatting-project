@@ -4,6 +4,7 @@ import App from "./App.tsx";
 import "./index.css";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC2whEs3DNQ9jyKa-ysTeQPZEgud3AEp6o",
@@ -16,7 +17,7 @@ const firebaseConfig = {
 };
 // Firebase 앱 초기화
 const app = initializeApp(firebaseConfig);
-
+const auth = getAuth(app);
 // Firestore를 사용할 준비가 되었습니다.
 const firestore = getFirestore(app);
 
@@ -26,4 +27,4 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   </React.StrictMode>
 );
 
-export default firestore;
+export default { auth, firestore };
