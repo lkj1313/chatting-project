@@ -9,7 +9,7 @@ import { Context } from "../../../App";
 import Modal from "../../../components/Modal";
 import ChatRoomCreatorModal from "./ChatRoomCreatorModal";
 
-const Menu = ({ setHidden }) => {
+const Menu = ({ setMainPageMenuBarOpener }) => {
   const [isOpen, setIsOpen] = useState(false); // 메뉴바
   const [modalOpen, setModalOpen] = useState(false); // 프로필모달
   const [profilePictureUrl, setProfilePictureUrl] = useState(""); //모달오픈버튼 프사
@@ -18,7 +18,7 @@ const Menu = ({ setHidden }) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [isChatRoomCreatorModal, setIsChatRoomCreatorModal] = useState(false);
   const context = useContext(Context);
-
+  console.log(profilePicture);
   const navigate = useNavigate();
   const profileModalOpener = () => {
     setModalOpen(!modalOpen);
@@ -67,14 +67,14 @@ const Menu = ({ setHidden }) => {
       <div
         className={isOpen ? `${classes.overlay}` : ""}
         onClick={() => {
-          setHidden(false);
+          setMainPageMenuBarOpener(false);
           setIsOpen(!isOpen);
         }}
       ></div>
       <button
         onClick={() => {
           setIsOpen(!isOpen);
-          setHidden(true);
+          setMainPageMenuBarOpener(true);
         }}
         className={
           isOpen ? `${classes.menuButtonHidden}` : `${classes.menuButton}`

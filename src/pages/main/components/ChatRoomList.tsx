@@ -10,8 +10,8 @@ import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import classes from "./ChatRoomList.module.css";
 
-const ChatRoomList = () => {
-  console.log("chatroomlist");
+const ChatRoomList = ({ mainPageMenuBarOpener }) => {
+  console.log(mainPageMenuBarOpener);
   const [chatRooms, setChatRooms] = useState([]);
   const navigate = useNavigate();
 
@@ -50,23 +50,27 @@ const ChatRoomList = () => {
   }, []);
 
   return (
-    <div className={classes.chatRoomsBox}>
-      {chatRooms.map((room) => (
-        <div
-          key={room.id}
-          className={classes.chatRoomBox}
-          onClick={() => enterChatRoom(room.id, room.name)}
-        >
-          <div className={classes.imgBox}>
-            <img
-              className={classes.chatRoomImg}
-              src={room.imageUrl}
-              alt="Chatroom Image"
-            />
-          </div>
-          <span className={classes.chatRoomName}>{room.name}</span>
+    <div>
+      {mainPageMenuBarOpener ? null : (
+        <div className={classes.chatRoomsBox}>
+          {chatRooms.map((room) => (
+            <div
+              key={room.id}
+              className={classes.chatRoomBox}
+              onClick={() => enterChatRoom(room.id, room.name)}
+            >
+              <div className={classes.imgBox}>
+                <img
+                  className={classes.chatRoomImg}
+                  src={room.imageUrl}
+                  alt="Chatroom Image"
+                />
+              </div>
+              <span className={classes.chatRoomName}>{room.name}</span>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 };

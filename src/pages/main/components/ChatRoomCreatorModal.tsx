@@ -20,8 +20,13 @@ const ChatRoomCreatorModal = ({ closeModal }) => {
   const handleDescriptionChange = (e) => {
     setChatRoomdDescription(e.target.value);
   };
+
   /////// 체크눌렀을시
   const handleChatRoomCreation = async () => {
+    if (chatRoomName.length > 4) {
+      alert("대화방 이름은 4글자를 초과할 수 없습니다.");
+      return;
+    }
     if (!chatRoomName) {
       alert("대화방 이름을 입력해주세요.");
       return;

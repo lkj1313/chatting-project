@@ -7,7 +7,13 @@
   display: flex;
   flex-direction: column;
 }
-
+.profilePictureNicknameBoxMy {
+  display: none;
+}
+.profilePictureNicknameBoxOther {
+  width: 50%;
+  display: flex;
+}
 .chatContainerMy {
   position: relative;
   display: flex;
@@ -19,17 +25,12 @@
 
 .chatContainerOther {
   position: relative;
+  width: auto;
   display: flex;
   flex-direction: column;
   margin-top: 30px;
 }
 
-.profilePictureNicknameBoxMy {
-  display: none;
-}
-.profilePictureNicknameBoxOther {
-  display: flex;
-}
 .chatProfilePicture {
   width: 40px;
   height: 40px;
@@ -45,14 +46,15 @@
 }
 .chatDivOther {
   position: relative;
+  left: 43px;
   height: auto;
   max-width: 70%;
-  left: 43px;
   background-color: #f0f0f0;
   border-radius: 10px;
   padding: 10px;
   display: flex;
   flex-direction: column;
+  overflow-wrap: break-word;
 }
 
 .chatDivOther:before {
@@ -90,10 +92,102 @@
   border-style: solid;
   border-color: transparent transparent transparent #ffff00; /* 왼쪽 선만 존재 */
 }
+.chatMessage {
+  position: relative;
+}
+.chatMenuButton {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: -18px;
+  background-color: transparent;
+  border: none;
+}
 
 .chatTime {
   margin-top: 12px;
   font-size: 13px;
   user-select: none;
   align-self: flex-end;
+}
+.menuOverlay {
+  display: flex;
+  position: absolute; /* position: fixed; 대신 position: absolute;를 사용합니다. */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: rgba(252, 252, 253, 0.5); /* 투명한 블루 색상 */
+  justify-content: center;
+  align-items: center;
+}
+
+.chatMenu {
+  font-size: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  top: -150px;
+  background-color: #d2d2d2;
+  width: 50%;
+  height: 150px;
+  z-index: 3;
+  border-radius: 30px;
+
+  box-sizing: border-box;
+}
+
+.chatMenu .chatRemoveButton {
+  display: flex;
+  margin-bottom: 20px;
+  width: 100%;
+  font-size: 2em;
+  border-color: transparent;
+  padding: 0;
+  background-color: transparent;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  transition: 1s ease background-color;
+  cursor: pointer;
+}
+
+.chatMenu .chatRemoveButton:hover {
+  background-color: #f6f6f6e5;
+}
+
+.chatMenu .chatModifyButton {
+  background-color: transparent;
+  display: flex;
+  padding: 0;
+  width: 100%;
+  font-size: 2em;
+  border-color: transparent;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 40px;
+  transition: 1s ease background-color;
+}
+
+.chatMenu .chatModifyButton:hover {
+  background-color: #f6f6f6e5;
+}
+
+.chatCorrectBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.chatCorrectBox button {
+  width: 80%;
+  margin-top: 30px;
 }

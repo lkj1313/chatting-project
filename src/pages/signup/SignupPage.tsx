@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import sendButton from "../../assets/sendButton.png";
 import classes from "./SignupPage.module.css";
 import Button from "@mui/material/Button";
-import firestore from "../../main";
+
 import Loding from "../../components/Loading";
 import URL_TO_DEFAULT_PROFILE_PICTURE from "../../assets/profile.jpg";
 const Signup = () => {

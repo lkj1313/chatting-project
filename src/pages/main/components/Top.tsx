@@ -5,9 +5,9 @@ import URL_TO_DEFAULT_PROFILE_PICTURE from "../../../assets/profile.jpg";
 import { Context } from "../../../App";
 import Menu from "./Menu";
 
-const Top = () => {
+const Top = ({ setMainPageMenuBarOpener, mainPageMenuBarOpener }) => {
   const contextObject = useContext(Context);
-  const [hidden, setHidden] = useState(false);
+
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -27,17 +27,19 @@ const Top = () => {
   return (
     <div
       className={
-        hidden
+        mainPageMenuBarOpener
           ? `${classes.topComponentsFirstDiv2}`
           : `${classes.topComponentsFirstDiv}`
       }
     >
-      <span style={{ visibility: hidden ? "hidden" : "visible" }}>
+      <span
+        style={{ visibility: mainPageMenuBarOpener ? "hidden" : "visible" }}
+      >
         채팅방 목록
       </span>
 
       <div className={classes.menu}>
-        <Menu setHidden={setHidden} />
+        <Menu setMainPageMenuBarOpener={setMainPageMenuBarOpener} />
       </div>
       <div>
         {/* <button className={classes.profileButton} onClick={openProfileModal}>

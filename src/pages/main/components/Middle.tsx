@@ -1,8 +1,12 @@
-import React from "react";
 import ChatRoomList from "./ChatRoomList";
 
-const Middle = () => {
-  return <ChatRoomList />;
+const Middle = ({ setMainPageMenuBarOpener, mainPageMenuBarOpener }) => {
+  return (
+    <ChatRoomList
+      mainPageMenuBarOpener={mainPageMenuBarOpener}
+      setMainPageMenuBarOpener={setMainPageMenuBarOpener}
+    />
+  );
 };
 
 export default Middle;

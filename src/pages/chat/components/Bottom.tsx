@@ -10,7 +10,6 @@ import {
   query,
   getDocs,
 } from "firebase/firestore";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
 
 import auth from "../../../main";
 

@@ -19,6 +19,7 @@ const getProfilePicture = async (userId) => {
   try {
     const userDoc = doc(firestore, "users", userId); // users 컬렉션에서 해당 사용자 문서 가져오기
     const userSnapshot = await getDoc(userDoc); // 사용자 문서 가져오기
+    console.log(userSnapshot);
     if (userSnapshot.exists()) {
       // 사용자 문서가 존재하면 프로필 사진 반환
       return userSnapshot.data().profilePicture;
@@ -50,8 +51,10 @@ const PrivateRoute = ({ children }) => {
       setIsAuthenticated(!!user); // 사용자가 있으면 true, 없으면 false 설정
 
       if (user) {
+        console.log(user);
         const userId = user.uid;
         setId(userId); // 사용자가 있으면 ID 설정
+        console.log(userId);
 
         const userProfilePicture = await getProfilePicture(userId);
         console.log(userProfilePicture);
@@ -67,7 +70,7 @@ const PrivateRoute = ({ children }) => {
     return () => {
       unsubscribe();
     };
-  }, []); // navigate를 useEffect 의존성 배열에 추가
+  }, []);
 
   return (
     <Context.Provider value={{ id, profilePicture, setProfilePicture }}>
